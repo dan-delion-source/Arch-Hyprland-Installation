@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installing Arch Linux with Hyprland — My Complete Setup Guide</title>
+  <meta name="description"
+    content="My personal step-by-step guide to installing Arch Linux with Hyprland. From Windows prep to a fully riced desktop — built for quick, clean reinstalls." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">
+        <svg class="nav-logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2L2 22h20L12 2z" />
+        </svg>
+        <span>Arch Guide</span>
+      </a>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#pre-installation" class="nav-link" data-section="pre-installation">Pre-Installation</a></li>
+        <li><a href="#install-arch" class="nav-link" data-section="install-arch">Install Arch</a></li>
+        <li><a href="#setup-hyprland" class="nav-link" data-section="setup-hyprland">Setup Hyprland</a></li>
+        <li>
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5" />
+              <path
+                d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+            </svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+            </svg>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Floating Side Progress -->
+  <div class="side-progress" id="sideProgress">
+    <div class="side-progress-item active" data-target="pre-installation">
+      <span class="side-dot"></span>
+      <span class="side-label">Pre-Install</span>
+    </div>
+    <div class="side-progress-item" data-target="install-arch">
+      <span class="side-dot"></span>
+      <span class="side-label">Install</span>
+    </div>
+    <div class="side-progress-item" data-target="setup-hyprland">
+      <span class="side-dot"></span>
+      <span class="side-label">Hyprland</span>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <div class="hero-grid"></div>
+      <div class="hero-gradient"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16"
+          height="16" style="vertical-align:-2px">
+          <path d="M4 19.5A2.5 2.5 0 016.5 17H20" />
+          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" />
+        </svg> My Personal Guide</div>
+      <h1 class="hero-title">
+        Installing <span class="text-accent">Arch Linux</span><br />
+        with <span class="text-accent">Hyprland</span>
+      </h1>
+      <p class="hero-subtitle">
+        This guide documents my personal process of installing Arch Linux and setting up a minimal yet functional
+        Hyprland environment. I reinstall Arch quite often due to experiments, tweaks, and occasional breakage. Instead
+        of rewriting commands every time or forgetting steps, I decided to document everything from disk preparation to
+        a fully working Hyprland setup.
+      </p>
+      <a href="#pre-installation" class="hero-btn">
+        <span>Start Reading</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+          <path d="M12 5v14M5 12l7 7 7-7" />
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="main-content">
+
+    <!-- ============================================ -->
+    <!-- SECTION 1: PRE-INSTALLATION                  -->
+    <!-- ============================================ -->
+    <section class="guide-section" id="pre-installation">
+      <div class="section-header" data-collapse="pre-install-body">
+        <div class="section-number">01</div>
+        <div>
+          <h2 class="section-title">Pre-Installation</h2>
+          <p class="section-desc">Windows preparation & disk setup before we dive in.</p>
+        </div>
+        <svg class="collapse-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 9l6 6 6-6" />
+        </svg>
+      </div>
+
+      <div class="section-body open" id="pre-install-body">
+
+        <!-- Card: Download ISO -->
+        <div class="content-card fade-in">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28"
+              height="28">
+              <circle cx="12" cy="12" r="10" />
+              <circle cx="12" cy="12" r="3" />
+            </svg></div>
+          <h3>1.1 — Download the Arch ISO</h3>
+          <ol>
+            <li>Go to the official <a href="https://archlinux.org/download/" target="_blank">Arch Linux website</a></li>
+            <li>Download the latest ISO</li>
+            <li>(Optional but recommended) Verify the checksum</li>
+          </ol>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-lang">LINK</span>
+              <button class="copy-btn" data-copy="https://archlinux.org/download/">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                  <rect x="9" y="9" width="13" height="13" rx="2" />
+                  <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                </svg>
+                <span>Copy</span>
+              </button>
+            </div>
+            <pre><code>https://archlinux.org/download/</code></pre>
+          </div>
+        </div>
+
+        <!-- Card: Bootable USB -->
+        <div class="content-card fade-in">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28"
+              height="28">
+              <path
+                d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z" />
+            </svg></div>
+          <h3>1.2 — Create a Bootable USB</h3>
+          <p>You can use <strong>Rufus</strong> (Windows) or <strong>Balena Etcher</strong>.</p>
+          <ol>
+            <li>Insert USB (<strong>8 GB+</strong> recommended)</li>
+            <li>Select the Arch ISO</li>
+            <li>Choose <strong>DD mode</strong></li>
+            <li>Start flashing and wait until complete</li>
+          </ol>
+        </div>
+
+        <!-- Card: Disk Preparation -->
+        <div class="content-card fade-in">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28"
+              height="28">
+              <rect x="2" y="2" width="20" height="20" rx="2" />
+              <path d="M22 13H2M22 7H2M6 22V2" />
+            </svg></div>
+          <h3>1.3 — Prepare Disk</h3>
+
+          <div class="info-callout">
+            <strong>&#9888; Dual Booting with Windows:</strong>
+            <ol>
+              <li>Open <strong>Disk Management</strong></li>
+              <li>Shrink your main Windows partition</li>
+              <li>Leave the space as <strong>Unallocated</strong></li>
+            </ol>
+          </div>
+
+          <div class="info-callout info-callout--tip">
+            <strong>&#10024; Full Disk Install:</strong> No preparation required — the installer will handle everything.
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- SECTION 2: INSTALLING ARCH LINUX             -->
+    <!-- ============================================ -->
+    <section class="guide-section" id="install-arch">
+      <div class="section-header" data-collapse="install-arch-body">
+        <div class="section-number">02</div>
+        <div>
+          <h2 class="section-title">Installing Arch Linux</h2>
+          <p class="section-desc">Using archinstall — from first boot to a working system.</p>
+        </div>
+        <svg class="collapse-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 9l6 6 6-6" />
+        </svg>
+      </div>
+
+      <div class="section-body open" id="install-arch-body">
+
+        <!-- Card: Booting -->
+        <div class="content-card fade-in">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28"
+              height="28">
+              <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 00-2.91-.09z" />
+              <path d="M12 15l-3-3a22 22 0 012-3.95A12.88 12.88 0 0122 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 01-4 2z" />
+              <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" />
+              <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
+            </svg></div>
+          <h3>2.1 — Boot into Arch</h3>
+          <ol>
+            <li>Reboot system</li>
+            <li>Enter BIOS</li>
+            <li>Select USB boot</li>
+            <li>Choose: <strong>Arch Linux install medium</strong></li>
+          </ol>
+        </div>
+
+        <!-- Card: Internet -->
+        <div class="content-card fade-in">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28"
+              height="28">
+              <path d="M5 12.55a11 11 0 0114.08 0" />
+              <path d="M1.42 9a16 16 0 0121.16 0" />
+              <path d="M8.53 16.11a6 6 0 016.95 0" />
+              <circle cx="12" cy="20" r="1" />
+            </svg></div>
+          <h3>2.2 — Verify Internet Connection</h3>
+          <p><strong>If using Ethernet:</strong></p>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-lang">bash</span>
+              <button class="copy-btn" data-copy="ping archlinux.org">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                  <rect x="9" y="9" width="13" height="13" rx="2" />
+                  <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                </svg>
+                <span>Copy</span>
+              </button>
+            </div>
+            <pre><code>ping archlinux.org</code></pre>
+          </div>
+          <p>If it works → continue.</p>
+
+          <p><strong>If using Wi-Fi:</strong></p>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-lang">bash</span>
+              <button class="copy-btn" data-copy="iwctl">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                  <rect x="9" y="9" width="13" height="13" rx="2" />
+                  <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                </svg>
+                <span>Copy</span>
+              </button>
+            </div>
+            <pre><code>iwctl</code></pre>
+          </div>
+          <p>Inside <code>iwctl</code>:</p>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-lang">bash</span>
+              <button class="copy-btn" data-copy="device list
+station wlan0 scan
+station wlan0 get-networks
+station wlan0 connect WIFI_NAME
+exit">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                  <rect x="9" y="9" width="13" height="13" rx="2" />
+                  <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                </svg>
+                <span>Copy</span>
+              </button>
+            </div>
+            <pre><code>device list
+station wlan0 scan
+station wlan0 get-networks
+station wlan0 connect WIFI_NAME
+exit</code></pre>
+          </div>
+          <p>Test connection:</p>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-lang">bash</span>
+              <button class="copy-btn" data-copy="ping archlinux.org">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                  <rect x="9" y="9" width="13" height="13" rx="2" />
+                  <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                </svg>
+                <span>Copy</span>
+              </button>
+            </div>
+            <pre><code>ping archlinux.org</code></pre>
+          </div>
+        </div>
+
+        <!-- Card: Partitioning -->
+        <div class="content-card fade-in">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28"
+              height="28">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <path d="M3 9h18M9 21V9" />
+            </svg></div>
+          <h3>2.3 — Partition the Disk</h3>
+          <p>Check available disks:</p>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-lang">bash</span>
+              <button class="copy-btn" data-copy="lsblk">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                  <rect x="9" y="9" width="13" height="13" rx="2" />
+                  <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                </svg>
+                <span>Copy</span>
+              </button>
+            </div>
+            <pre><code>lsblk</code></pre>
+          </div>
+          <p>Use <code>cfdisk</code> (example for NVMe):</p>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-lang">bash</span>
+              <button class="copy-btn" data-copy="cfdisk /dev/nvme0n1">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                  <rect x="9" y="9" width="13" height="13" rx="2" />
+                  <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                </svg>
+                <span>Copy</span>
+              </button>
+            </div>
+            <pre><code>cfdisk /dev/nvme0n1</code></pre>
+          </div>
+          <div class="info-callout">
+            <strong>&#9998; Partition Scheme (UEFI):</strong>
+            <ul>
+              <li><strong>1G</strong> → EFI System</li>
+              <li><strong>Remaining space</strong> → Linux filesystem</li>
+            </ul>
+          </div>
+          <p>After creating partitions: <strong>Write changes</strong> → <strong>Quit</strong>.</p>
+          <p>Verify:</p>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-lang">bash</span>
+              <button class="copy-btn" data-copy="lsblk">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                  <rect x="9" y="9" width="13" height="13" rx="2" />
+                  <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                </svg>
+                <span>Copy</span>
+              </button>
+            </div>
+            <pre><code>lsblk</code></pre>
+          </div>
+        </div>
+
+        <!-- Card: Formatting -->
+        <div class="content-card fade-in">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28"
+              height="28">
+              <path d="M20 14.66V20a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2h5.34" />
+              <polygon points="18 2 22 6 12 16 8 16 8 12 18 2" />
+            </svg></div>
+          <h3>2.4 — Format Partitions</h3>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-lang">bash</span>
+              <button class="copy-btn" data-copy="mkfs.fat -F32 /dev/nvme0n1p1
+mkfs.ext4 /dev/nvme0n1p2">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                  <rect x="9" y="9" width="13" height="13" rx="2" />
+                  <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                </svg>
+                <span>Copy</span>
+              </button>
+            </div>
+            <pre><code>mkfs.fat -F32 /dev/nvme0n1p1(1G)
+mkfs.ext4 /dev/nvme0n1p2(Remaining Space)</code></pre>
+          </div>
+          <p>Verify:</p>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-lang">bash</span>
+              <button class="copy-btn" data-copy="lsblk -f">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                  <rect x="9" y="9" width="13" height="13" rx="2" />
+                  <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                </svg>
+                <span>Copy</span>
+              </button>
+            </div>
+            <pre><code>lsblk -f</code></pre>
+          </div>
+        </div>
+
+        <!-- Card: archinstall -->
+        <div class="content-card fade-in">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28"
+              height="28">
+              <circle cx="12" cy="12" r="3" />
+              <path
+                d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z" />
+            </svg></div>
+          <h3>2.5 — Installing via archinstall</h3>
+          <p>Run the installer:</p>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-lang">bash</span>
+              <button class="copy-btn" data-copy="archinstall">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                  <rect x="9" y="9" width="13" height="13" rx="2" />
+                  <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                </svg>
+                <span>Copy</span>
+              </button>
+            </div>
+            <pre><code>archinstall</code></pre>
+          </div>
+          <p>Leave most options default except the following custom changes:</p>
+
+          <div class="info-callout">
+            <strong>&#9998; Disk Configuration:</strong>
+            <ul>
+              <li>Select the 1G EFI partition → assign mount point: <code>/boot</code></li>
+              <li>Select remaining Linux partition → assign mount point: <code>/</code></li>
+            </ul>
+          </div>
+
+          <div class="info-callout">
+            <strong>&#9998; Other Settings:</strong>
+            <ul>
+              <li><strong>Bootloader</strong> → GRUB</li>
+              <li><strong>Hostname</strong> → set if you want (optional)</li>
+              <li><strong>User Account</strong> → create username + set password and set user as sudo user</li>
+              <li><strong>Bluetooth</strong> → Yes</li>
+              <li><strong>Audio</strong> → PipeWire</li>
+              <li><strong>Network</strong> → NetworkManager (default)</li>
+            </ul>
+          </div>
+
+          <div class="info-callout">
+            <strong>&#9998; Additional Packages:</strong>
+            <ul>
+              <li>Search and install: <code>os-prober</code> and <code>vim</code> (or any editor you prefer)</li>
+            </ul>
+          </div>
+
+          <div class="info-callout info-callout--tip">
+            <strong>&#10024; Tip:</strong> Press <code>/</code> to search, press <code>Tab</code> to select. Use the
+            same for
+            Timezone — search your region using <code>/</code>.
+          </div>
+
+          <div class="info-callout">
+            <strong>&#9888; Double-check everything before clicking Install.</strong>
+            After installation finishes, select <strong>chroot into installation</strong> for post-install
+            configuration.
+          </div>
+        </div>
+
+        <!-- Card: GRUB Verify & Reinstall -->
+        <div class="content-card fade-in">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28"
+              height="28">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+              <path d="M7 11V7a5 5 0 0110 0v4" />
+            </svg></div>
+          <h3>2.6 — Verify & Reinstall GRUB</h3>
+          <p>Inside chroot, install required packages:</p>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-lang">bash</span>
+              <button class="copy-btn" data-copy="sudo pacman -S efibootmgr grub mtools dosfstools">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                  <rect x="9" y="9" width="13" height="13" rx="2" />
+                  <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                </svg>
+                <span>Copy</span>
+              </button>
+            </div>
+            <pre><code>sudo pacman -S efibootmgr grub mtools dosfstools</code></pre>
+          </div>
+          <p>Install GRUB:</p>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-lang">bash</span>
+              <button class="copy-btn"
+                data-copy="grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                  <rect x="9" y="9" width="13" height="13" rx="2" />
+                  <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                </svg>
+                <span>Copy</span>
+              </button>
+            </div>
+            <pre><code>grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB</code></pre>
+          </div>
+          <p>Generate config:</p>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-lang">bash</span>
+              <button class="copy-btn" data-copy="grub-mkconfig -o /boot/grub/grub.cfg">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                  <rect x="9" y="9" width="13" height="13" rx="2" />
+                  <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                </svg>
+                <span>Copy</span>
+              </button>
+            </div>
+            <pre><code>grub-mkconfig -o /boot/grub/grub.cfg</code></pre>
+          </div>
+          <p>Exit and reboot:</p>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-lang">bash</span>
+              <button class="copy-btn" data-copy="exit
+reboot">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                  <rect x="9" y="9" width="13" height="13" rx="2" />
+                  <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                </svg>
+                <span>Copy</span>
+              </button>
+            </div>
+            <pre><code>exit
+reboot</code></pre>
+          </div>
+        </div>
+
+        <!-- Card: Fix Windows in GRUB -->
+        <div class="content-card fade-in">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28"
+              height="28">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+              <path d="M8 21h8M12 17v4" />
+            </svg></div>
+          <h3>Fixing GRUB to Show Windows</h3>
+          <p>After reboot, GRUB might only show Arch Linux. Boot into Arch, log in with your created username and
+            password. If using Wi-Fi, reconnect.</p>
+          <p>Edit GRUB config:</p>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-lang">bash</span>
+              <button class="copy-btn" data-copy="sudo vim /etc/default/grub">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                  <rect x="9" y="9" width="13" height="13" rx="2" />
+                  <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                </svg>
+                <span>Copy</span>
+              </button>
+            </div>
+            <pre><code>sudo vim /etc/default/grub</code></pre>
+          </div>
+          <p>Find this line and uncomment it:</p>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-lang">config</span>
+              <button class="copy-btn" data-copy="GRUB_DISABLE_OS_PROBER=false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                  <rect x="9" y="9" width="13" height="13" rx="2" />
+                  <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                </svg>
+                <span>Copy</span>
+              </button>
+            </div>
+            <pre><code>GRUB_DISABLE_OS_PROBER=false</code></pre>
+          </div>
+          <p>Make sure required packages are installed:</p>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-lang">bash</span>
+              <button class="copy-btn" data-copy="sudo pacman -S os-prober fuse3">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                  <rect x="9" y="9" width="13" height="13" rx="2" />
+                  <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                </svg>
+                <span>Copy</span>
+              </button>
+            </div>
+            <pre><code>sudo pacman -S os-prober fuse3</code></pre>
+          </div>
+          <p>Regenerate GRUB:</p>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-lang">bash</span>
+              <button class="copy-btn" data-copy="sudo grub-mkconfig -o /boot/grub/grub.cfg">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                  <rect x="9" y="9" width="13" height="13" rx="2" />
+                  <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                </svg>
+                <span>Copy</span>
+              </button>
+            </div>
+            <pre><code>sudo grub-mkconfig -o /boot/grub/grub.cfg</code></pre>
+          </div>
+          <p>Reboot &rarr; Windows should now appear in GRUB. &#10003;</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- SECTION 3: SETTING UP HYPRLAND               -->
+    <!-- ============================================ -->
+    <section class="guide-section" id="setup-hyprland">
+      <div class="section-header" data-collapse="setup-hyprland-body">
+        <div class="section-number">03</div>
+        <div>
+          <h2 class="section-title">Setting Up Hyprland</h2>
+          <p class="section-desc">Install Hyprland, enable the display manager, and rice it up.</p>
+        </div>
+        <svg class="collapse-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 9l6 6 6-6" />
+        </svg>
+      </div>
+
+      <div class="section-body open" id="setup-hyprland-body">
+
+        <!-- Card: Install Hyprland Packages -->
+        <div class="content-card fade-in">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28"
+              height="28">
+              <path
+                d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" />
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+              <line x1="12" y1="22.08" x2="12" y2="12" />
+            </svg></div>
+          <h3>3.1 — Install Required Packages</h3>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-lang">bash</span>
+              <button class="copy-btn" data-copy="sudo pacman -S hyprland wayland wayland-protocols \
+xorg-xwayland kitty sddm git">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                  <rect x="9" y="9" width="13" height="13" rx="2" />
+                  <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                </svg>
+                <span>Copy</span>
+              </button>
+            </div>
+            <pre><code>sudo pacman -S hyprland wayland wayland-protocols \
+xorg-xwayland kitty sddm git</code></pre>
+          </div>
+        </div>
+
+        <!-- Card: SDDM -->
+        <div class="content-card fade-in">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28"
+              height="28">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+              <path d="M8 21h8M12 17v4" />
+            </svg></div>
+          <h3>3.2 — Enable Display Manager</h3>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-lang">bash</span>
+              <button class="copy-btn" data-copy="sudo systemctl enable sddm.service">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                  <rect x="9" y="9" width="13" height="13" rx="2" />
+                  <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                </svg>
+                <span>Copy</span>
+              </button>
+            </div>
+            <pre><code>sudo systemctl enable sddm.service</code></pre>
+          </div>
+          <p>Reboot:</p>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-lang">bash</span>
+              <button class="copy-btn" data-copy="reboot">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                  <rect x="9" y="9" width="13" height="13" rx="2" />
+                  <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                </svg>
+                <span>Copy</span>
+              </button>
+            </div>
+            <pre><code>reboot</code></pre>
+          </div>
+          <p>Login via SDDM. Press <code>Super + Q</code> to open terminal.</p>
+        </div>
+
+        <!-- Card: Update System -->
+        <div class="content-card fade-in">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28"
+              height="28">
+              <polyline points="23 4 23 10 17 10" />
+              <polyline points="1 20 1 14 7 14" />
+              <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15" />
+            </svg></div>
+          <h3>3.3 — Update System</h3>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-lang">bash</span>
+              <button class="copy-btn" data-copy="sudo pacman -Syu
+sudo pacman -S base-devel git">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                  <rect x="9" y="9" width="13" height="13" rx="2" />
+                  <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                </svg>
+                <span>Copy</span>
+              </button>
+            </div>
+            <pre><code>sudo pacman -Syu
+sudo pacman -S base-devel git</code></pre>
+          </div>
+        </div>
+
+        <!-- Card: Ricing -->
+        <div class="content-card fade-in">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28"
+              height="28">
+              <path
+                d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 011.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.555C21.965 6.012 17.461 2 12 2z" />
+              <circle cx="7.5" cy="11.5" r="1.5" />
+              <circle cx="10.5" cy="7.5" r="1.5" />
+              <circle cx="14.5" cy="7.5" r="1.5" />
+              <circle cx="17.5" cy="11.5" r="1.5" />
+            </svg></div>
+          <h3>3.4 — Installing My Hyprland Rice (Zenities)</h3>
+          <p>For this guide, I'm using a Hyprland rice from <a href="https://github.com/hayyaoe/zenites"
+              target="_blank"><strong>Zenities</strong></a>.</p>
+          <p>Clone the repository:</p>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-lang">bash</span>
+              <button class="copy-btn" data-copy="git clone https://github.com/hayyaoe/zenites
+cd zenites
+sh INSTALL.sh">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                  <rect x="9" y="9" width="13" height="13" rx="2" />
+                  <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                </svg>
+                <span>Copy</span>
+              </button>
+            </div>
+            <pre><code>git clone https://github.com/hayyaoe/zenites
+cd zenites
+sh INSTALL.sh</code></pre>
+          </div>
+          <div class="info-callout info-callout--tip">
+            <strong>&#10024; Note:</strong> Adjust repo name if needed. Reboot after installation and enjoy your
+            beautifully
+            riced Hyprland desktop!
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24">
+          <path d="M12 2L2 22h20L12 2z" />
+        </svg>
+        <span>Arch Guide</span>
+      </div>
+      <p class="footer-text">Made by <strong>Daniel</strong> &nbsp;&middot;&nbsp; Powered by Arch Linux</p>
+      <div class="footer-links">
+        <a href="https://github.com/dan-delion-source" target="_blank" rel="noopener noreferrer" class="footer-link">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+            <path
+              d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+          </svg>
+          <span>GitHub</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
