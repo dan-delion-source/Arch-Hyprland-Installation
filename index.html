@@ -36,6 +36,7 @@
         <li><a href="#pre-installation" class="nav-link" data-section="pre-installation">Pre-Installation</a></li>
         <li><a href="#install-arch" class="nav-link" data-section="install-arch">Install Arch</a></li>
         <li><a href="#setup-hyprland" class="nav-link" data-section="setup-hyprland">Setup Hyprland</a></li>
+        <li><a href="#additionals-setup" class="nav-link" data-section="additionals-setup">Additionals</a></li>
         <li>
           <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
             <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -65,6 +66,10 @@
     <div class="side-progress-item" data-target="setup-hyprland">
       <span class="side-dot"></span>
       <span class="side-label">Hyprland</span>
+    </div>
+    <div class="side-progress-item" data-target="additionals-setup">
+      <span class="side-dot"></span>
+      <span class="side-label">Additionals</span>
     </div>
   </div>
 
@@ -751,6 +756,79 @@ sh INSTALL.sh</code></pre>
             <strong>&#10024; Note:</strong> Adjust repo name if needed. Reboot after installation and enjoy your
             beautifully
             riced Hyprland desktop!
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- SECTION 4: ADDITIONALS SETUP                 -->
+    <!-- ============================================ -->
+    <section class="guide-section" id="additionals-setup">
+      <div class="section-header" data-collapse="additionals-setup-body">
+        <div class="section-number">04</div>
+        <div>
+          <h2 class="section-title">Additionals Setup</h2>
+          <p class="section-desc">Packages (what I use for dev setup).</p>
+        </div>
+        <svg class="collapse-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 9l6 6 6-6" />
+        </svg>
+      </div>
+
+      <div class="section-body open" id="additionals-setup-body">
+
+        <!-- Card: Dev Setup Script -->
+        <div class="content-card fade-in">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28"
+              height="28">
+              <path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z" />
+            </svg></div>
+          <h3>4.1 — My Development Packages</h3>
+          <p>Here are the packages I install for my development setup. You can run the script below to quickly install
+            all of them at once.</p>
+
+          <div class="info-callout">
+            <strong>📦 Pacman Packages:</strong>
+            <p><code>neovim</code>, <code>thunar</code>, <code>libreoffice-fresh</code>, <code>discord</code>,
+              <code>gedit</code>, <code>code</code></p>
+          </div>
+
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-lang">bash</span>
+              <button class="copy-btn"
+                data-copy="sudo pacman -S --noconfirm neovim thunar libreoffice-fresh discord gedit code">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                  <rect x="9" y="9" width="13" height="13" rx="2" />
+                  <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                </svg>
+                <span>Copy</span>
+              </button>
+            </div>
+            <pre><code>sudo pacman -S --noconfirm neovim thunar libreoffice-fresh discord gedit code</code></pre>
+          </div>
+
+          <div class="info-callout" style="margin-top: 1.5rem;">
+            <strong>🧩 AUR (yay) Packages:</strong>
+            <p><code>brave-bin</code>, <code>localsend-bin</code>, <code>spotify</code>, <code>cursor-bin</code>,
+              <code>prismlauncher</code>, <code>antigravity</code></p>
+          </div>
+
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-lang">bash</span>
+              <button class="copy-btn"
+                data-copy="yay -S --noconfirm brave-bin localsend-bin spotify cursor-bin prismlauncher antigravity">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                  <rect x="9" y="9" width="13" height="13" rx="2" />
+                  <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                </svg>
+                <span>Copy</span>
+              </button>
+            </div>
+            <pre><code>yay -S --noconfirm brave-bin localsend-bin spotify cursor-bin prismlauncher antigravity</code></pre>
           </div>
         </div>
 
